@@ -1,0 +1,52 @@
+{
+  "generated_utc": "2026-11-01T15:26:09Z",
+  "source": {
+    "repo": "https://github.com/AI45Lab/IS-Bench",
+    "path": "data/tasks",
+    "commit": "6a406e162feca1c4c455d9c9f1f58832edbdc1fd",
+    "n_task_files": 161
+  },
+  "counts": {
+    "tasks": 161,
+    "machine_checkable_risks": 321,
+    "narrative_only_cautions": 58,
+    "risk_types": 8
+  },
+  "coverage": {
+    "representation_pct": 26.479750778816197,
+    "pre_action_pct": 23.98753894080997,
+    "joint_pct": 9.345794392523365,
+    "mapping_kappa": null,
+    "mapping_raw_agreement_pct": 73.5202492211838,
+    "kappa_note": "undefined: one mapping is constant, so chance agreement is 1 and kappa cannot be computed"
+  },
+  "environment": {
+    "python": "3.13.16",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3"
+  },
+  "preregistration": {
+    "written_before_any_analysis": true,
+    "dataset": "IS-Bench released scenario JSONs (AI45Lab/IS-Bench, data/tasks)",
+    "question": "What fraction of an externally annotated household-safety specification can EthosVLA's constitution C and 3D-ESG express?",
+    "H1": "Coverage is low, because the ESG attribute vocabulary carries no object-state channel while most IS-Bench conditions are stated over object states.",
+    "H2": "Coverage is further bounded by temporal form: CEAD filters the current action, whereas termination-phase risks are obligations discharged later.",
+    "H3": "The taxonomy-based and predicate-based mappings agree (Cohen's kappa > 0.6), so the estimate is not an artefact of one framing.",
+    "primary_outcome": "fraction of machine-checkable risks expressible by C",
+    "secondary_outcomes": [
+      "coverage by risk type",
+      "coverage by phase",
+      "marginal coverage of each candidate extension"
+    ],
+    "falsifier": "If coverage exceeds 50%, H1 is wrong and the ESG is more general than Definition 4.1 suggests.",
+    "not_measured": [
+      "HAR / PVS / TSR on IS-Bench: requires OmniGibson rollouts, not run here.",
+      "Whether EthosVLA would avoid these hazards in practice: unknown and untested."
+    ]
+  },
+  "disclosures": {
+    "no_rollouts": "IS-Bench requires OmniGibson on Isaac Sim; no agent was run. This notebook audits representational coverage only and produces no HAR, PVS or TSR for IS-Bench.",
+    "mapping_is_a_judgement": "RISK_TO_RULE and PREDICATE_CLASS encode the authors' reading of Definition 4.1 and Appendix H. Both are editable in Cell 6 and the per-risk rationale is in isbench_risk_coverage.csv for independent checking.",
+    "count_discrepancy": "The paper reports 388 risks across 10 categories; the released data yields the counts above. Analysed counts are reported, not the paper's."
+  }
+}

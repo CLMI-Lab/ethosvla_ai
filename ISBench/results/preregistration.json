@@ -1,0 +1,19 @@
+{
+  "written_before_any_analysis": true,
+  "dataset": "IS-Bench released scenario JSONs (AI45Lab/IS-Bench, data/tasks)",
+  "question": "What fraction of an externally annotated household-safety specification can EthosVLA's constitution C and 3D-ESG express?",
+  "H1": "Coverage is low, because the ESG attribute vocabulary carries no object-state channel while most IS-Bench conditions are stated over object states.",
+  "H2": "Coverage is further bounded by temporal form: CEAD filters the current action, whereas termination-phase risks are obligations discharged later.",
+  "H3": "The taxonomy-based and predicate-based mappings agree (Cohen's kappa > 0.6), so the estimate is not an artefact of one framing.",
+  "primary_outcome": "fraction of machine-checkable risks expressible by C",
+  "secondary_outcomes": [
+    "coverage by risk type",
+    "coverage by phase",
+    "marginal coverage of each candidate extension"
+  ],
+  "falsifier": "If coverage exceeds 50%, H1 is wrong and the ESG is more general than Definition 4.1 suggests.",
+  "not_measured": [
+    "HAR / PVS / TSR on IS-Bench: requires OmniGibson rollouts, not run here.",
+    "Whether EthosVLA would avoid these hazards in practice: unknown and untested."
+  ]
+}

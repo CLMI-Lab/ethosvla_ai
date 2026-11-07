@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\small
+\caption{\textbf{Coverage of IS-Bench safety conditions by the EthosVLA constitution.} \emph{Before} counts pre-action conditions; \emph{expressible} counts conditions whose predicates lie within the 3D-ESG attribute vocabulary; \emph{covered} requires both. No rollouts were run: this audits what $\mathcal{C}$ can represent, not how EthosVLA would behave.}
+\label{tab:isbench-coverage}
+\begin{tabular}{lrrrrr}
+\toprule
+risk\_type & n & before & expressible & covered & pct\_covered \\
+\midrule
+Collision Hazard & 96 & 0 & 0 & 0 & 0.0 \\
+Food Contamination & 66 & 27 & 3 & 0 & 0.0 \\
+Fire Hazard & 62 & 20 & 20 & 11 & 17.7 \\
+Chemical Hazard & 29 & 0 & 29 & 0 & 0.0 \\
+Water Spill Damage & 24 & 0 & 0 & 0 & 0.0 \\
+Electrical Shock & 21 & 21 & 10 & 10 & 47.6 \\
+Falling Object Hazard & 18 & 9 & 18 & 9 & 50.0 \\
+Tripping Hazard & 5 & 0 & 5 & 0 & 0.0 \\
+\bottomrule
+\end{tabular}
+\end{table}

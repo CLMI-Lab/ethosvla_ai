@@ -1,0 +1,5 @@
+variant,coverage_pct,delta_vs_baseline_pp
+C as published,9.345794392523365,0.0
+object-state channel in Phi only,23.98753894080997,14.641744548286605
+deferred obligations in CEAD only,26.479750778816197,17.13395638629283
+both extensions,100.0,90.65420560747664

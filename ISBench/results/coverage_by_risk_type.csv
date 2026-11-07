@@ -1,0 +1,9 @@
+risk_type,n,expressible,before,covered,pct_covered
+Collision Hazard,96,0,0,0,0.0
+Food Contamination,66,3,27,0,0.0
+Fire Hazard,62,20,20,11,17.741935483870968
+Chemical Hazard,29,29,0,0,0.0
+Water Spill Damage,24,0,0,0,0.0
+Electrical Shock,21,10,21,10,47.61904761904762
+Falling Object Hazard,18,18,9,9,50.0
+Tripping Hazard,5,5,0,0,0.0
