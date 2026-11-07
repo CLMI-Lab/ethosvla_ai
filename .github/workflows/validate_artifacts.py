@@ -111,10 +111,31 @@ def check_notebooks() -> None:
             failures.append(f"notebook has no 'cells' key: {rel(path)}")
 
 
+RESULTS = ROOT / "Results" / "ethosvla_final_results_30baselines.json"
+DEPRECATED = ROOT / "Results" / "DEPRECATED_pre-correction_results.json"
+
+
 def check_headline_metrics() -> None:
     """Guard against republishing pre-correction numbers."""
-    target = ROOT / "Results" / "ethosvla_final_results_30baselines.json"
+    target = RESULTS
+
     if not target.exists():
+        if DEPRECATED.exists():
+            # The stale export has been quarantined rather than regenerated.
+            # This is not a passing state: it is an acknowledged gap, and the
+            # warning stays loud until the corrected export lands.
+            warnings.append(
+                f"{rel(DEPRECATED)}: pooled results have NOT been regenerated. "
+                "This file predates the episode-level PVS correction and reports "
+                "PVS 0.0, HAR 97.2, TSR 98.7 over two benchmarks; the paper "
+                "reports PVS 1.1, HAR 96.4, TSR 97.2 pooled over three (n = 475). "
+                "TODO: re-run the evaluation with episode-level PVS, bootstrap "
+                "pooling and DROID, export to "
+                "Results/ethosvla_final_results_30baselines.json, and regenerate "
+                "figures/fig4_ablation.* from it. Until then no released artifact "
+                "backs the paper's headline numbers."
+            )
+            return
         failures.append(f"missing results file: {rel(target)}")
         return
 

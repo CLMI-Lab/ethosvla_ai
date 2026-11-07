@@ -3,7 +3,7 @@
 **Constitutional Decoding for Safety, Privacy, and Fairness in Frozen Embodied Agents**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Model License: RAIL](https://img.shields.io/badge/BAAD%20License-RAIL--aligned-red.svg)](LICENSE-BAAD)
+![Model License: RAIL](https://img.shields.io/badge/BAAD%20License-RAIL--aligned%20(pending)-lightgrey.svg)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch 2.2](https://img.shields.io/badge/PyTorch-2.2-ee4c2c.svg)](https://pytorch.org/)
 
@@ -109,7 +109,7 @@ Hard violations prune the candidate; the beam survives. Only the CAC head `W_c` 
 
 All metrics are defined at **episode granularity**, which enforces `PVS ≤ 1 − HAR` by construction.
 
-> ⚠ **The released result files do not yet carry these numbers.** `Results/ethosvla_final_results_30baselines.json` still reports the pre-correction `combined_avg` of HAR 97.2 / TSR 98.7 / **PVS 0.0** / BDI 3.3 / COR 3.4, computed as an arithmetic mean over RLBench and ScanNet only, with no DROID entries and 29 baselines. `figures/fig4_ablation.*` is rendered from that same file and prints the same superseded row. See [Artifact Inventory](#artifact-inventory). Run `python scripts/validate_artifacts.py` to reproduce this finding.
+> ⚠ **The released result files do not yet carry these numbers.** `Results/DEPRECATED_pre-correction_results.json` (formerly `ethosvla_final_results_30baselines.json`) still reports the pre-correction `combined_avg` of HAR 97.2 / TSR 98.7 / **PVS 0.0** / BDI 3.3 / COR 3.4, computed as an arithmetic mean over RLBench and ScanNet only, with no DROID entries and 29 baselines. `figures/fig4_ablation.*` is rendered from that same file and prints the same superseded row. See [Artifact Inventory](#artifact-inventory). Run `python scripts/validate_artifacts.py` to reproduce this finding.
 
 ### Benchmarks reported separately
 
@@ -547,7 +547,7 @@ EthosVLA is a **modular safeguard requiring human oversight and context-specific
 ## License
 
 - **Code, results, and evaluation logs:** MIT
-- **BAAD module and counterfactual pipeline:** RAIL-aligned restrictive license (dual-use mitigation)
+- **BAAD module and counterfactual pipeline:** a RAIL-aligned restrictive license is intended for dual-use mitigation, but `LICENSE-BAAD` is **not yet published**. Until it is, no separate grant covers this module and the MIT grant above explicitly excludes it.
 - **Vendored IS-Bench scenario data** under `IS-Bench/` and `cache/IS-Bench/` remains under its upstream license.
 
-See [`LICENSE`](LICENSE) and [`LICENSE-BAAD`](LICENSE-BAAD).
+See [`LICENSE`](LICENSE).
