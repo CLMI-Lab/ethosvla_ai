@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Policy-norm $\times$ audit-norm cross-evaluation on a ProcTHOR-10K subset. Privacy zones are bedrooms and bathrooms identified by \texttt{roomType}; surrogate controller. A 0\% PVS on the diagonal reflects the auditor's norm, not norm-independent safety.}
+\label{tab:e1-cross}
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+policy\_norm & audit\_norm & HAR & PVS & TSR & COR & room\_entries & door\_crossings & opp & n \\
+\midrule
+c1-community & c1-community & 87.93 & 0.81 & 33.91 & 51.91 & 0.91 & 10.23 & 89.46 & 522 \\
+c1-community & c1-household & 87.93 & 0.81 & 33.91 & 51.91 & 0.91 & 10.23 & 89.46 & 522 \\
+c1-community & c1-individual & 87.93 & 0.81 & 33.91 & 51.91 & 0.91 & 10.23 & 89.46 & 522 \\
+c1-household & c1-community & 46.55 & 21.27 & 74.52 & 21.38 & 2.25 & 6.33 & 71.84 & 522 \\
+c1-household & c1-household & 91.57 & 0.44 & 74.52 & 21.38 & 2.25 & 6.33 & 71.84 & 522 \\
+c1-household & c1-individual & 58.81 & 15.25 & 74.52 & 21.38 & 2.25 & 6.33 & 71.84 & 522 \\
+c1-individual & c1-community & 72.99 & 8.21 & 45.21 & 43.15 & 1.75 & 9.55 & 85.25 & 522 \\
+c1-individual & c1-household & 88.70 & 0.69 & 45.21 & 43.15 & 1.75 & 9.55 & 85.25 & 522 \\
+c1-individual & c1-individual & 88.70 & 0.69 & 45.21 & 43.15 & 1.75 & 9.55 & 85.25 & 522 \\
+\bottomrule
+\end{tabular}
+\end{table}

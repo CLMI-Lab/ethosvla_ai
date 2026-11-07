@@ -1,0 +1,6 @@
+test,p_raw,p_holm,reject
+"PVS: static_binary(paper) vs temporal_relational (Wilcoxon, rb=1.00)",0.00043680902321148305,0.0021840451160574153,True
+"post_revocation_violation_steps: static_binary(paper) vs temporal_relational (Wilcoxon, rb=1.00)",0.002200340526906492,0.0078125,True
+egress_compliance (McNemar),0.001953125,0.0078125,True
+"egress_latency: static_binary(paper) vs temporal_relational (Wilcoxon, rb=1.00)",0.0078125,0.015625,True
+"TSR: static_binary(paper) vs temporal_relational (Wilcoxon, rb=1.00)",0.0081509715935027,0.015625,True

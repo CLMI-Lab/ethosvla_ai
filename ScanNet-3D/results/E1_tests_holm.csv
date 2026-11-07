@@ -1,0 +1,7 @@
+test,p_raw,p_holm,reject
+PVS c1-individual vs c1-household (Wilcoxon),1.047847792370507e-12,6.287086754223042e-12,True
+PVS c1-household vs c1-community (Wilcoxon),1.917929203749927e-12,9.589646018749634e-12,True
+HAR c1-individual vs c1-household (McNemar),6.401865149108231e-11,2.5607460596432924e-10,True
+HAR c1-household vs c1-community (McNemar),1.2750032374450517e-08,3.825009712335155e-08,True
+PVS c1-individual vs c1-community (Wilcoxon),0.8641610311132468,1.0,False
+HAR c1-individual vs c1-community (McNemar),1.0,1.0,False

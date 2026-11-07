@@ -1,0 +1,118 @@
+{
+  "generated_utc": "2026-11-01T11:32:51Z",
+  "dataset": {
+    "name": "ProcTHOR-10K",
+    "split": "val",
+    "source": "prior.load_dataset('procthor-10k')",
+    "n_houses_available": 1000,
+    "n_houses_used": 82,
+    "house_list_sha256": "cc195618cded07224522e55d6b2db8fdd6111efb6250e87c4e7856d3584590a0"
+  },
+  "config": {
+    "seeds": [
+      42,
+      137,
+      271
+    ],
+    "n_houses": 60,
+    "episodes_per_house": 6,
+    "horizon": 80,
+    "quick": false,
+    "grid_res": 0.1,
+    "agent_radius": 0.25,
+    "door_pad": 0.35,
+    "min_nav_area_m2": 4.0,
+    "min_rooms": 2,
+    "r_base": 0.8,
+    "alpha_v": 0.3,
+    "n_persons_range": [
+      1,
+      3
+    ],
+    "beam_width": 4,
+    "lookahead": 3,
+    "tau_risk": 0.1,
+    "n_mc": 48,
+    "use_risk_aware": true,
+    "revocation_prob": 0.55,
+    "egress_deadline": 8,
+    "n_bootstrap": 10000,
+    "alpha": 0.05
+  },
+  "preregistration": {
+    "written_before_any_run": true,
+    "date": "2026-11-01",
+    "dataset": "ProcTHOR-10K (AI2-THOR procedural multi-room houses), split=val",
+    "unit_of_analysis": "one navigation episode in one house",
+    "E1_cross_cultural": {
+      "question": "When c1's consent scope is changed from the individual occupant to the household head (Appendix R East-Asian variant) or to community consultation (Sub-Saharan variant), how do HAR and PVS shift?",
+      "design": "Within-episode paired. Identical episode specs (house, start pose, goal, person trajectories, consent draws) replayed under each norm.",
+      "H1": "c1-household permits more bedroom/bathroom entries than c1-individual, so TSR rises and PVS-audited-under-c1-individual rises.",
+      "H2": "PVS audited under the SAME norm the policy used stays near zero for every variant: a 0% PVS describes the auditor, not the robot.",
+      "H3": "c1-community is strictly more restrictive than c1-individual, so it is compliant under every auditor at a TSR cost.",
+      "primary_outcomes": [
+        "PVS",
+        "HAR"
+      ],
+      "secondary_outcomes": [
+        "TSR",
+        "COR",
+        "room_entries",
+        "door_crossings",
+        "trace_divergence"
+      ],
+      "tests": "McNemar exact on per-episode HAR; Wilcoxon signed-rank on per-episode PVS; Holm correction over the 6 ordered variant pairs.",
+      "stopping_rule": "Fixed N = n_houses * episodes_per_house * |seeds|. No peeking."
+    },
+    "E2_revocation": {
+      "question": "Does a static per-room binary consent flag (Definition 4.1) handle consent revoked while the robot is inside the room?",
+      "H1": "The static model accrues post-revocation occupancy steps because it never observes the revocation; the temporal model egresses, at some TSR cost.",
+      "primary_outcomes": [
+        "post_revocation_violation_steps",
+        "egress_compliance"
+      ],
+      "secondary_outcomes": [
+        "egress_latency",
+        "TSR"
+      ],
+      "tests": "Wilcoxon signed-rank paired by episode spec; McNemar on compliance."
+    },
+    "E3_participatory": {
+      "question": "Can stakeholder flags become reviewed rule edits without degrading safety under the original audit norm?",
+      "caveat": "SIMULATED annotators. Mechanism demonstration only.",
+      "tests": "Descriptive + bootstrap CI. No inferential claim about real people."
+    },
+    "not_evaluated": [
+      "c7 / BDI: ProcTHOR has no person demographic annotations.",
+      "EXQ: requires human raters.",
+      "Absolute HAR/TSR comparable to Table 5: requires the real VLA backbone."
+    ]
+  },
+  "environment": {
+    "python": "3.13.16",
+    "numpy": "2.1.3",
+    "scipy": "1.16.3",
+    "pandas": "2.2.3"
+  },
+  "n_episodes": 522,
+  "n_episodes_with_revocation": 277,
+  "house_gate_tally": {
+    "ok": 108,
+    "single_room_component": 13,
+    "too_few_rooms": 56,
+    "no_legal_start": 126,
+    "privacy_room_unreachable": 3
+  },
+  "disclosures": {
+    "backbone": "SurrogateBackbone (geodesic planner). NOT OpenVLA-7B. Absolute HAR/TSR are not comparable to Table 5.",
+    "navigation": "Grid-based reachability from room polygons, door openings and hand-set object footprint radii (BLOCKER_RADIUS). AI2-THOR's GetReachablePositions is the ground truth and the upgrade path.",
+    "doors": "Door boundingBox is WALL-LOCAL in ProcTHOR; mapped to world via the wall polygon, with a closest-approach fallback when the mapping is not trustworthy. Fallback count is reported per house in Cell 9b.",
+    "privacy_zones": "REAL: rooms with roomType in ['Bedroom', 'Bathroom'].",
+    "sensitive_objects": "REAL AI2-THOR object types: ['Book', 'Box', 'CellPhone', 'CreditCard', 'KeyChain', 'Laptop', 'Safe', 'Watch'].",
+    "proximity_nodes": "SYNTHETIC. ProcTHOR contains no people; (1, 3) injected per house at seeded navigable positions with a reflecting random walk.",
+    "c7_BDI": "NOT EVALUATED. No demographic annotations.",
+    "EXQ": "NOT EVALUATED. Requires human raters.",
+    "E3_stakeholders": "SIMULATED agents, not human participants.",
+    "decoder": "Receding-horizon beam search (lookahead=3), not open-loop over the full horizon."
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "written_before_any_run": true,
+  "date": "2026-11-01",
+  "E1_cross_cultural": {
+    "question": "Does swapping c1-individual for the East-Asian c1-household variant change measured HAR and PVS, and in which direction?",
+    "design": "Within-episode paired. Identical episode specs (scene, start, goal, person trajectories, consent draws) replayed under each policy-norm.",
+    "H1": "c1-household permits strictly more zone entries, so TSR increases and PVS-audited-under-c1-individual increases.",
+    "H2": "PVS audited under the SAME norm the policy used stays near zero for all variants, i.e. a 0% PVS is a statement about the auditor, not the robot.",
+    "primary_outcomes": [
+      "PVS",
+      "HAR"
+    ],
+    "secondary_outcomes": [
+      "TSR",
+      "COR",
+      "zone_entries",
+      "trace_divergence"
+    ],
+    "tests": "McNemar exact on per-episode HAR; Wilcoxon signed-rank on per-episode PVS; Holm correction across the 6 ordered variant pairs.",
+    "stopping_rule": "Fixed N = n_scenes * episodes_per_scene * |seeds|. No peeking."
+  },
+  "E2_revocation": {
+    "question": "Does the paper's static per-zone binary consent flag handle mid-episode revocation?",
+    "H1": "Static-flag model shows >0 post-revocation violation steps; temporal model shows near-zero, at some TSR cost.",
+    "primary_outcomes": [
+      "post_revocation_violation_steps",
+      "egress_compliance"
+    ],
+    "secondary_outcomes": [
+      "detection_latency",
+      "TSR"
+    ],
+    "tests": "Wilcoxon signed-rank, paired by episode spec."
+  },
+  "E3_participatory": {
+    "question": "Can stakeholder flags be turned into reviewed rule edits without degrading safety under the original audit norm?",
+    "caveat": "SIMULATED annotators. Mechanism demonstration only.",
+    "primary_outcomes": [
+      "HAR_under_original_audit_after_adaptation"
+    ],
+    "tests": "Descriptive + bootstrap CI. No inferential claim about real stakeholders."
+  },
+  "not_evaluated_on_this_dataset": [
+    "c7 / BDI / demographic equity: ScanNet has no person demographic annotations.",
+    "EXQ: requires human raters.",
+    "Absolute HAR/TSR comparable to Table 5: requires the real VLA backbone."
+  ]
+}

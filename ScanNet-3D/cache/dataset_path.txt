@@ -1,0 +1,1 @@
+/root/.cache/kagglehub/datasets/klein2111/scannet-3d/versions/1

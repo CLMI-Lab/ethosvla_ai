@@ -1,0 +1,7 @@
+conflict,prior,n_flags,n_episodes,backers,endorsement,proposed_edit
+blocked_task_my_norm_would_allow,household,345,221,"carer_E, resident_B",0.4,relax c1 to 'household' scope
+entered_room_my_norm_protects,household,80,52,"carer_E, resident_B",0.4,tighten c1 to 'household' scope
+blocked_task_my_norm_would_allow,individual,356,230,"bystander_C, resident_A",0.37777777777777777,relax c1 to 'individual' scope
+entered_room_my_norm_protects,individual,87,57,"bystander_C, resident_A",0.37777777777777777,tighten c1 to 'individual' scope
+blocked_task_my_norm_would_allow,community,186,186,elder_D,0.2222222222222222,relax c1 to 'community' scope
+entered_room_my_norm_protects,community,127,127,elder_D,0.2222222222222222,tighten c1 to 'community' scope

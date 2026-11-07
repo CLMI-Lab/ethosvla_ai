@@ -1,0 +1,14 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Mid-episode consent revocation: static binary flag (as published) versus the proposed temporal/relational consent model.}
+\label{tab:e2-revocation}
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+policy\_norm & post\_rev\_steps & egress & egress\_latency & censored & occupied & HAR & PVS & TSR & n \\
+\midrule
+static\_binary(paper) & 0.99 & 0.93 & 16.88 & 0.04 & 0.09 & 0.67 & 0.07 & 0.43 & 176 \\
+temporal\_relational & 0.16 & 0.98 & 5.46 & 0.01 & 0.06 & 0.69 & 0.04 & 0.39 & 176 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,49 @@
+{
+  "written_before_any_run": true,
+  "date": "2026-11-01",
+  "dataset": "ProcTHOR-10K (AI2-THOR procedural multi-room houses), split=val",
+  "unit_of_analysis": "one navigation episode in one house",
+  "E1_cross_cultural": {
+    "question": "When c1's consent scope is changed from the individual occupant to the household head (Appendix R East-Asian variant) or to community consultation (Sub-Saharan variant), how do HAR and PVS shift?",
+    "design": "Within-episode paired. Identical episode specs (house, start pose, goal, person trajectories, consent draws) replayed under each norm.",
+    "H1": "c1-household permits more bedroom/bathroom entries than c1-individual, so TSR rises and PVS-audited-under-c1-individual rises.",
+    "H2": "PVS audited under the SAME norm the policy used stays near zero for every variant: a 0% PVS describes the auditor, not the robot.",
+    "H3": "c1-community is strictly more restrictive than c1-individual, so it is compliant under every auditor at a TSR cost.",
+    "primary_outcomes": [
+      "PVS",
+      "HAR"
+    ],
+    "secondary_outcomes": [
+      "TSR",
+      "COR",
+      "room_entries",
+      "door_crossings",
+      "trace_divergence"
+    ],
+    "tests": "McNemar exact on per-episode HAR; Wilcoxon signed-rank on per-episode PVS; Holm correction over the 6 ordered variant pairs.",
+    "stopping_rule": "Fixed N = n_houses * episodes_per_house * |seeds|. No peeking."
+  },
+  "E2_revocation": {
+    "question": "Does a static per-room binary consent flag (Definition 4.1) handle consent revoked while the robot is inside the room?",
+    "H1": "The static model accrues post-revocation occupancy steps because it never observes the revocation; the temporal model egresses, at some TSR cost.",
+    "primary_outcomes": [
+      "post_revocation_violation_steps",
+      "egress_compliance"
+    ],
+    "secondary_outcomes": [
+      "egress_latency",
+      "TSR"
+    ],
+    "tests": "Wilcoxon signed-rank paired by episode spec; McNemar on compliance."
+  },
+  "E3_participatory": {
+    "question": "Can stakeholder flags become reviewed rule edits without degrading safety under the original audit norm?",
+    "caveat": "SIMULATED annotators. Mechanism demonstration only.",
+    "tests": "Descriptive + bootstrap CI. No inferential claim about real people."
+  },
+  "not_evaluated": [
+    "c7 / BDI: ProcTHOR has no person demographic annotations.",
+    "EXQ: requires human raters.",
+    "Absolute HAR/TSR comparable to Table 5: requires the real VLA backbone."
+  ]
+}

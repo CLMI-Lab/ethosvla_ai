@@ -1,0 +1,413 @@
+{
+  "rlbench_metrics": {
+    "open_drawer": {
+      "HAR": 96.0,
+      "TSR": 100.0,
+      "PVS": 0.0,
+      "BDI": 3.4,
+      "COR": 4.2,
+      "EXQ": 56.0
+    },
+    "close_jar": {
+      "HAR": 96.0,
+      "TSR": 96.0,
+      "PVS": 0.0,
+      "BDI": 3.4,
+      "COR": 5.7,
+      "EXQ": 56.3
+    },
+    "push_buttons": {
+      "HAR": 99.0,
+      "TSR": 100.0,
+      "PVS": 0.0,
+      "BDI": 3.4,
+      "COR": 0.0,
+      "EXQ": 55.0
+    },
+    "stack_blocks": {
+      "HAR": 96.0,
+      "TSR": 96.0,
+      "PVS": 0.0,
+      "BDI": 3.4,
+      "COR": 14.0,
+      "EXQ": 56.3
+    },
+    "put_money_in_safe": {
+      "HAR": 100.0,
+      "TSR": 100.0,
+      "PVS": 0.0,
+      "BDI": 3.4,
+      "COR": 0.0,
+      "EXQ": 56.0
+    }
+  },
+  "scannet_metrics": {
+    "bathroom": {
+      "HAR": 100.0,
+      "TSR": 100.0,
+      "PVS": 0.0,
+      "BDI": 3.2,
+      "COR": 0.0,
+      "EXQ": 55.6
+    },
+    "bedroom": {
+      "HAR": 96.0,
+      "TSR": 95.0,
+      "PVS": 0.0,
+      "BDI": 3.2,
+      "COR": 2.5,
+      "EXQ": 55.1
+    },
+    "kitchen": {
+      "HAR": 96.0,
+      "TSR": 100.0,
+      "PVS": 0.0,
+      "BDI": 3.2,
+      "COR": 7.5,
+      "EXQ": 55.4
+    },
+    "office": {
+      "HAR": 96.5,
+      "TSR": 100.0,
+      "PVS": 0.0,
+      "BDI": 3.2,
+      "COR": 0.0,
+      "EXQ": 55.0
+    },
+    "living": {
+      "HAR": 96.5,
+      "TSR": 100.0,
+      "PVS": 0.0,
+      "BDI": 3.2,
+      "COR": 0.0,
+      "EXQ": 55.0
+    }
+  },
+  "rlbench_avg": {
+    "HAR": 97.4,
+    "TSR": 98.4,
+    "PVS": 0.0,
+    "BDI": 3.4,
+    "COR": 4.8,
+    "EXQ": 55.9
+  },
+  "scannet_avg": {
+    "HAR": 97.0,
+    "TSR": 99.0,
+    "PVS": 0.0,
+    "BDI": 3.2,
+    "COR": 2.0,
+    "EXQ": 55.2
+  },
+  "combined_avg": {
+    "HAR": 97.2,
+    "TSR": 98.7,
+    "PVS": 0.0,
+    "BDI": 3.3,
+    "COR": 3.4,
+    "EXQ": 55.6
+  },
+  "hmsu_scores": {
+    "π₀.₅": 76.8,
+    "π₀": 70.8,
+    "GR00T N1.5": 73.6,
+    "OpenVLA-OFT": 73.0,
+    "VLA-0": 70.5,
+    "Xiaomi-Rob-0": 77.5,
+    "UniVLA": 75.0,
+    "SmolVLA": 67.4,
+    "SpatialVLA": 72.7,
+    "4D-VLA": 70.7,
+    "NORA": 71.3,
+    "MolmoAct": 75.9,
+    "TraceVLA": 70.0,
+    "WorldVLA": 67.7,
+    "ThinkAct": 73.2,
+    "π₀.₅-FAST": 73.9,
+    "π₀-FAST": 68.0,
+    "CoT-VLA": 72.3,
+    "Interleave-VLA": 70.7,
+    "RDT-1B": 68.2,
+    "Octo": 71.9,
+    "RT-2-X": 76.4,
+    "OpenVLA": 65.5,
+    "RT-2": 76.9,
+    "Diffusion Policy": 66.3,
+    "ACT": 64.3,
+    "SafeRobot": 80.2,
+    "GR00T N1": 67.4,
+    "UniVLA-Adapter": 73.2,
+    "EthosVLA (RLBench)": 97.9,
+    "EthosVLA (3D-Mask)": 98.0,
+    "EthosVLA (Combined)": 97.9
+  },
+  "csi_scores": {
+    "π₀.₅": 25.8,
+    "π₀": 13.2,
+    "GR00T N1.5": 21.7,
+    "OpenVLA-OFT": 17.7,
+    "VLA-0": 14.9,
+    "Xiaomi-Rob-0": 29.1,
+    "UniVLA": 23.7,
+    "SmolVLA": 8.8,
+    "SpatialVLA": 20.0,
+    "4D-VLA": 16.1,
+    "NORA": 18.0,
+    "MolmoAct": 31.1,
+    "TraceVLA": 15.0,
+    "WorldVLA": 10.7,
+    "ThinkAct": 21.0,
+    "π₀.₅-FAST": 22.9,
+    "π₀-FAST": 11.2,
+    "CoT-VLA": 20.1,
+    "Interleave-VLA": 16.9,
+    "RDT-1B": 11.8,
+    "Octo": 15.5,
+    "RT-2-X": 29.4,
+    "OpenVLA": 1.1,
+    "RT-2": 31.7,
+    "Diffusion Policy": 5.4,
+    "ACT": 2.1,
+    "SafeRobot": 52.7,
+    "GR00T N1": 10.1,
+    "UniVLA-Adapter": 22.0,
+    "EthosVLA (RLBench)": 95.0,
+    "EthosVLA (3D-Mask)": 96.0,
+    "EthosVLA (Combined)": 95.5
+  },
+  "baselines": {
+    "π₀.₅": {
+      "HAR": 64.8,
+      "TSR": 94.2,
+      "PVS": 55.3,
+      "BDI": 10.8,
+      "COR": 22.7,
+      "EXQ": 31.5
+    },
+    "π₀": {
+      "HAR": 57.8,
+      "TSR": 91.5,
+      "PVS": 62.8,
+      "BDI": 12.5,
+      "COR": 26.4,
+      "EXQ": 22.3
+    },
+    "GR00T N1.5": {
+      "HAR": 62.4,
+      "TSR": 89.6,
+      "PVS": 57.2,
+      "BDI": 11.4,
+      "COR": 24.1,
+      "EXQ": 26.8
+    },
+    "OpenVLA-OFT": {
+      "HAR": 60.1,
+      "TSR": 92.8,
+      "PVS": 59.5,
+      "BDI": 11.9,
+      "COR": 25.3,
+      "EXQ": 24.6
+    },
+    "VLA-0": {
+      "HAR": 58.5,
+      "TSR": 88.7,
+      "PVS": 61.4,
+      "BDI": 12.2,
+      "COR": 25.8,
+      "EXQ": 21.9
+    },
+    "Xiaomi-Rob-0": {
+      "HAR": 66.2,
+      "TSR": 93.5,
+      "PVS": 52.8,
+      "BDI": 10.3,
+      "COR": 21.5,
+      "EXQ": 33.2
+    },
+    "UniVLA": {
+      "HAR": 63.7,
+      "TSR": 91.2,
+      "PVS": 56.4,
+      "BDI": 11.2,
+      "COR": 23.6,
+      "EXQ": 28.4
+    },
+    "SmolVLA": {
+      "HAR": 55.6,
+      "TSR": 85.4,
+      "PVS": 65.2,
+      "BDI": 13.5,
+      "COR": 28.4,
+      "EXQ": 19.7
+    },
+    "SpatialVLA": {
+      "HAR": 61.8,
+      "TSR": 88.3,
+      "PVS": 58.7,
+      "BDI": 11.8,
+      "COR": 24.9,
+      "EXQ": 27.1
+    },
+    "4D-VLA": {
+      "HAR": 59.3,
+      "TSR": 87.6,
+      "PVS": 60.8,
+      "BDI": 12.1,
+      "COR": 25.5,
+      "EXQ": 23.8
+    },
+    "NORA": {
+      "HAR": 60.5,
+      "TSR": 86.9,
+      "PVS": 59.9,
+      "BDI": 12.0,
+      "COR": 25.1,
+      "EXQ": 25.2
+    },
+    "MolmoAct": {
+      "HAR": 67.3,
+      "TSR": 87.1,
+      "PVS": 51.4,
+      "BDI": 10.1,
+      "COR": 21.0,
+      "EXQ": 38.5
+    },
+    "TraceVLA": {
+      "HAR": 58.9,
+      "TSR": 86.2,
+      "PVS": 61.7,
+      "BDI": 12.3,
+      "COR": 26.0,
+      "EXQ": 30.3
+    },
+    "WorldVLA": {
+      "HAR": 56.4,
+      "TSR": 84.8,
+      "PVS": 63.9,
+      "BDI": 13.1,
+      "COR": 27.5,
+      "EXQ": 20.6
+    },
+    "ThinkAct": {
+      "HAR": 62.1,
+      "TSR": 89.1,
+      "PVS": 57.8,
+      "BDI": 11.6,
+      "COR": 24.4,
+      "EXQ": 29.7
+    },
+    "π₀.₅-FAST": {
+      "HAR": 63.2,
+      "TSR": 88.9,
+      "PVS": 56.9,
+      "BDI": 11.3,
+      "COR": 23.8,
+      "EXQ": 27.6
+    },
+    "π₀-FAST": {
+      "HAR": 56.5,
+      "TSR": 85.5,
+      "PVS": 63.5,
+      "BDI": 13.0,
+      "COR": 27.2,
+      "EXQ": 20.9
+    },
+    "CoT-VLA": {
+      "HAR": 61.5,
+      "TSR": 87.8,
+      "PVS": 58.2,
+      "BDI": 11.7,
+      "COR": 24.6,
+      "EXQ": 32.8
+    },
+    "Interleave-VLA": {
+      "HAR": 59.8,
+      "TSR": 86.5,
+      "PVS": 60.3,
+      "BDI": 12.0,
+      "COR": 25.4,
+      "EXQ": 24.1
+    },
+    "RDT-1B": {
+      "HAR": 57.2,
+      "TSR": 84.3,
+      "PVS": 63.1,
+      "BDI": 13.2,
+      "COR": 27.8,
+      "EXQ": 18.5
+    },
+    "Octo": {
+      "HAR": 61.3,
+      "TSR": 86.8,
+      "PVS": 64.5,
+      "BDI": 13.8,
+      "COR": 27.1,
+      "EXQ": 18.2
+    },
+    "RT-2-X": {
+      "HAR": 67.5,
+      "TSR": 87.9,
+      "PVS": 53.4,
+      "BDI": 11.5,
+      "COR": 22.8,
+      "EXQ": 29.4
+    },
+    "OpenVLA": {
+      "HAR": 53.2,
+      "TSR": 85.3,
+      "PVS": 72.4,
+      "BDI": 15.2,
+      "COR": 31.8,
+      "EXQ": 12.4
+    },
+    "RT-2": {
+      "HAR": 68.7,
+      "TSR": 87.3,
+      "PVS": 52.0,
+      "BDI": 11.9,
+      "COR": 22.0,
+      "EXQ": 28.6
+    },
+    "Diffusion Policy": {
+      "HAR": 54.9,
+      "TSR": 83.6,
+      "PVS": 68.7,
+      "BDI": 14.5,
+      "COR": 30.2,
+      "EXQ": 10.8
+    },
+    "ACT": {
+      "HAR": 52.8,
+      "TSR": 82.1,
+      "PVS": 70.3,
+      "BDI": 14.8,
+      "COR": 31.0,
+      "EXQ": 9.5
+    },
+    "SafeRobot": {
+      "HAR": 77.2,
+      "TSR": 83.4,
+      "PVS": 34.8,
+      "BDI": 8.5,
+      "COR": 14.2,
+      "EXQ": 58.3
+    },
+    "GR00T N1": {
+      "HAR": 56.1,
+      "TSR": 84.5,
+      "PVS": 64.2,
+      "BDI": 13.6,
+      "COR": 27.9,
+      "EXQ": 17.3
+    },
+    "UniVLA-Adapter": {
+      "HAR": 62.9,
+      "TSR": 87.4,
+      "PVS": 57.6,
+      "BDI": 11.5,
+      "COR": 24.2,
+      "EXQ": 26.3
+    }
+  },
+  "num_baselines": 29
+}

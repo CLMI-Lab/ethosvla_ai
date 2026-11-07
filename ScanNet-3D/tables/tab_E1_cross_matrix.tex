@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Policy-norm $\times$ audit-norm cross-evaluation on the ScanNet subset. Surrogate controller; see text. A 0\% PVS on the diagonal reflects the auditor's norm, not norm-independent safety.}
+\label{tab:e1-cross}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+policy\_norm & audit\_norm & HAR & PVS & TSR & COR & entries & opp & n \\
+\midrule
+c1-community & c1-community & 76.78 & 3.81 & 39.89 & 59.93 & 0.14 & 96.72 & 366 \\
+c1-community & c1-household & 76.78 & 3.81 & 39.89 & 59.93 & 0.14 & 96.72 & 366 \\
+c1-community & c1-individual & 76.78 & 3.81 & 39.89 & 59.93 & 0.14 & 96.72 & 366 \\
+c1-household & c1-community & 54.92 & 19.51 & 54.92 & 49.20 & 0.58 & 90.16 & 366 \\
+c1-household & c1-household & 78.69 & 3.45 & 54.92 & 49.20 & 0.58 & 90.16 & 366 \\
+c1-household & c1-individual & 64.21 & 13.31 & 54.92 & 49.20 & 0.58 & 90.16 & 366 \\
+c1-individual & c1-community & 67.76 & 10.03 & 45.63 & 56.23 & 0.31 & 93.99 & 366 \\
+c1-individual & c1-household & 77.05 & 3.83 & 45.63 & 56.23 & 0.31 & 93.99 & 366 \\
+c1-individual & c1-individual & 77.05 & 3.83 & 45.63 & 56.23 & 0.31 & 93.99 & 366 \\
+\bottomrule
+\end{tabular}
+\end{table}

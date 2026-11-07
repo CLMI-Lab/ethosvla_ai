@@ -1,0 +1,116 @@
+{
+  "generated_utc": "2026-11-01T10:27:21Z",
+  "dataset": {
+    "kaggle_slug": "klein2111/scannet-3d",
+    "detected_format": "torch_pth",
+    "n_scene_handles": 1513,
+    "scene_gate_tally": {
+      "ok": 47,
+      "no_navigable_space": 53,
+      "no_privacy_zone": 20,
+      "no_legal_start": 10
+    },
+    "n_scenes_used": 45,
+    "scene_list_sha256": "b73f2feb799256d3e5e964092543f98e582639ad151027dcbaa68075acdd7ce5"
+  },
+  "config": {
+    "seeds": [
+      42,
+      137,
+      271
+    ],
+    "n_scenes": 40,
+    "episodes_per_scene": 8,
+    "horizon": 60,
+    "quick": false,
+    "grid_res": 0.1,
+    "agent_height_band": [
+      0.15,
+      1.7
+    ],
+    "r_base": 0.8,
+    "alpha_v": 0.3,
+    "privacy_zone_pad": 0.3,
+    "n_persons_range": [
+      1,
+      3
+    ],
+    "occ_min_pts": 2,
+    "min_nav_area_m2": 2.0,
+    "max_zone_radius": 1.6,
+    "beam_width": 4,
+    "lambda_beta": 0.6,
+    "tau_risk": 0.1,
+    "n_mc": 64,
+    "use_risk_aware": true,
+    "revocation_prob": 0.5,
+    "egress_deadline": 5,
+    "n_bootstrap": 10000,
+    "alpha": 0.05
+  },
+  "preregistration": {
+    "written_before_any_run": true,
+    "date": "2026-11-01",
+    "E1_cross_cultural": {
+      "question": "Does swapping c1-individual for the East-Asian c1-household variant change measured HAR and PVS, and in which direction?",
+      "design": "Within-episode paired. Identical episode specs (scene, start, goal, person trajectories, consent draws) replayed under each policy-norm.",
+      "H1": "c1-household permits strictly more zone entries, so TSR increases and PVS-audited-under-c1-individual increases.",
+      "H2": "PVS audited under the SAME norm the policy used stays near zero for all variants, i.e. a 0% PVS is a statement about the auditor, not the robot.",
+      "primary_outcomes": [
+        "PVS",
+        "HAR"
+      ],
+      "secondary_outcomes": [
+        "TSR",
+        "COR",
+        "zone_entries",
+        "trace_divergence"
+      ],
+      "tests": "McNemar exact on per-episode HAR; Wilcoxon signed-rank on per-episode PVS; Holm correction across the 6 ordered variant pairs.",
+      "stopping_rule": "Fixed N = n_scenes * episodes_per_scene * |seeds|. No peeking."
+    },
+    "E2_revocation": {
+      "question": "Does the paper's static per-zone binary consent flag handle mid-episode revocation?",
+      "H1": "Static-flag model shows >0 post-revocation violation steps; temporal model shows near-zero, at some TSR cost.",
+      "primary_outcomes": [
+        "post_revocation_violation_steps",
+        "egress_compliance"
+      ],
+      "secondary_outcomes": [
+        "detection_latency",
+        "TSR"
+      ],
+      "tests": "Wilcoxon signed-rank, paired by episode spec."
+    },
+    "E3_participatory": {
+      "question": "Can stakeholder flags be turned into reviewed rule edits without degrading safety under the original audit norm?",
+      "caveat": "SIMULATED annotators. Mechanism demonstration only.",
+      "primary_outcomes": [
+        "HAR_under_original_audit_after_adaptation"
+      ],
+      "tests": "Descriptive + bootstrap CI. No inferential claim about real stakeholders."
+    },
+    "not_evaluated_on_this_dataset": [
+      "c7 / BDI / demographic equity: ScanNet has no person demographic annotations.",
+      "EXQ: requires human raters.",
+      "Absolute HAR/TSR comparable to Table 5: requires the real VLA backbone."
+    ]
+  },
+  "environment": {
+    "python": "3.13.16",
+    "numpy": "2.1.3",
+    "scipy": "1.16.3",
+    "pandas": "2.2.3"
+  },
+  "n_episodes": 366,
+  "n_episodes_with_revocation": 176,
+  "disclosures": {
+    "backbone": "SurrogateBackbone (geodesic planner). NOT OpenVLA-7B. Absolute HAR/TSR are not comparable to Table 5.",
+    "proximity_nodes": "SYNTHETIC. ScanNet contains almost no person instances; (1, 3) persons injected per scene at seeded free-floor positions with a reflecting random walk.",
+    "sensitive_objects": "nyu40 classes where available; scannet20 runs fall back to a proxy class set (bookshelf/cabinet/counter/desk).",
+    "c7_BDI": "NOT EVALUATED. No demographic annotations in ScanNet.",
+    "EXQ": "NOT EVALUATED. Requires human raters.",
+    "E3_stakeholders": "SIMULATED agents, not human participants.",
+    "decoder": "Receding-horizon beam search (lookahead=3), not open-loop over T=20."
+  }
+}
