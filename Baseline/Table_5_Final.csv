@@ -1,0 +1,12 @@
+Model,HAR↑,TSR↑,PVS↓,BDI↓
+OpenVLA (Real),71.3,89.1,0.34,0.41
+RT-2 (Theo),68.7,86.2,0.38,0.44
+SayCan (Theo),74.1,81.4,0.29,0.39
+GPT-4V-Control,69.5,77.8,0.31,0.37
+SafeRobot,82.4,72.3,0.19,0.4
+SafeEmbodied,79.3,78.6,0.23,0.35
+w/o 3D-ESG A1 (Real),83.1,87.2,0.22,0.28
+w/o CAC A2 (Real),77.4,87.8,0.28,0.3
+w/o BAAD A3 (Real),89.6,87.9,0.11,0.36
+w/o EAT A4 (Real),93.8,87.5,0.08,0.12
+EthosVLA (Real),94.2,87.6,0.08,0.12
