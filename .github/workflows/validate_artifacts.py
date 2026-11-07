@@ -28,7 +28,27 @@ import json
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+def _find_root() -> Path:
+    """Locate the repository root independently of where this script lives.
+
+    The script has been committed at more than one path, so deriving the root
+    from __file__ alone is unreliable: run from .github/workflows/ it would
+    resolve to .github/ and report every artifact as missing.
+    """
+    for start in (Path(__file__).resolve().parent, Path.cwd().resolve()):
+        for candidate in (start, *start.parents):
+            if (candidate / ".git").exists():
+                return candidate
+            # Fallback marker for archive extracts with no .git directory.
+            if (candidate / "Results").is_dir() and (candidate / "README.md").is_file():
+                return candidate
+    raise SystemExit(
+        "Could not locate the repository root. Run this from inside a "
+        "checkout of the repository."
+    )
+
+
+ROOT = _find_root()
 
 # Vendored upstream data is not ours to validate.
 SKIP_DIRS = {".git", "cache", "IS-Bench", "__MACOSX", ".ipynb_checkpoints"}

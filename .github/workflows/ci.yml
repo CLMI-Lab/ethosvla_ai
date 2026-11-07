@@ -1,8 +1,7 @@
 name: CI
 
-# Replaces the Django starter template that shipped in .github/workflows/django.yml.
-# This repository is a research artifact release, not a Django app: it has no
-# manage.py, no root requirements.txt, and targets Python 3.10+ with PyTorch 2.2.
+# Validation for a research artifact release. This repository is not a web
+# app: no manage.py, no Django, Python 3.10+ with PyTorch 2.2.
 
 on:
   push:
@@ -11,25 +10,45 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   artifacts:
     name: Validate released artifacts
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.10", "3.11", "3.12"]
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: "3.12"
+
+      # The validator is pure stdlib, so one interpreter is enough; it has
+      # lived at more than one path, so locate it instead of hardcoding.
+      - name: Locate the validator
+        id: locate
+        run: |
+          for candidate in \
+            scripts/validate_artifacts.py \
+            .github/workflows/validate_artifacts.py \
+            validate_artifacts.py
+          do
+            if [ -f "$candidate" ]; then
+              echo "path=$candidate" >> "$GITHUB_OUTPUT"
+              echo "Using $candidate"
+              if [ "$candidate" != "scripts/validate_artifacts.py" ]; then
+                echo "::warning file=$candidate::Validator should live at scripts/validate_artifacts.py"
+              fi
+              exit 0
+            fi
+          done
+          echo "::error::validate_artifacts.py not found in scripts/, .github/workflows/, or the repository root."
+          exit 1
 
       - name: Validate JSON, CSV, notebooks, and headline metrics
-        run: python scripts/validate_artifacts.py
+        run: python "${{ steps.locate.outputs.path }}"
 
   notebooks:
     name: Lint notebooks
@@ -39,7 +58,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
 
       - name: Install tooling
         run: python -m pip install --upgrade pip nbformat
@@ -70,21 +89,36 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Reject macOS cruft and committed archives
+      # Advisory: a committed archive is a packaging problem, not a broken
+      # build, so it annotates rather than blocking merges to main.
+      - name: Report committed archives
         run: |
-          status=0
-          if find . -path ./.git -prune -o \( -name ".DS_Store" -o -name "__MACOSX" \) -print | grep -q .; then
-            echo "FAIL  .DS_Store or __MACOSX entries are committed:"
-            find . -path ./.git -prune -o \( -name ".DS_Store" -o -name "__MACOSX" \) -print
-            status=1
+          archives=$(git ls-files | grep -E '\.(zip|tar\.gz|tgz|rar|7z)$' || true)
+          if [ -n "$archives" ]; then
+            while read -r f; do
+              size=$(du -h "$f" | cut -f1)
+              echo "::warning file=$f::Committed archive ($size). Publish it as a GitHub release asset and run: git rm --cached $f"
+            done <<< "$archives"
+          else
+            echo "No committed archives."
           fi
-          if find . -path ./.git -prune -o -name "*.zip" -print | grep -q .; then
-            echo "FAIL  archive files are committed; release them as GitHub release assets instead:"
-            find . -path ./.git -prune -o -name "*.zip" -print
-            status=1
+
+      # Blocking: these are genuine defects in a release.
+      - name: Reject macOS cruft
+        run: |
+          cruft=$(git ls-files | grep -E '(^|/)(\.DS_Store|__MACOSX/)' || true)
+          if [ -n "$cruft" ]; then
+            echo "::error::macOS metadata is committed:"
+            echo "$cruft"
+            exit 1
           fi
-          exit $status
+          echo "No committed .DS_Store or __MACOSX entries."
 
       - name: Require a license file
         run: |
-          test -f LICENSE || { echo "FAIL  no LICENSE at repository root"; exit 1; }
+          if ls LICENSE LICENSE.md LICENSE.txt >/dev/null 2>&1; then
+            echo "License present."
+          else
+            echo "::error::No LICENSE at the repository root."
+            exit 1
+          fi

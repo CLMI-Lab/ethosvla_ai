@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+__MACOSX/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Archives — publish as GitHub release assets, not repo contents
+*.zip
+*.tar.gz
+
+# Large local data
+*.pth
+*.ckpt
+*.safetensors
