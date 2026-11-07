@@ -1,0 +1,90 @@
+name: CI
+
+# Replaces the Django starter template that shipped in .github/workflows/django.yml.
+# This repository is a research artifact release, not a Django app: it has no
+# manage.py, no root requirements.txt, and targets Python 3.10+ with PyTorch 2.2.
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  artifacts:
+    name: Validate released artifacts
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Validate JSON, CSV, notebooks, and headline metrics
+        run: python scripts/validate_artifacts.py
+
+  notebooks:
+    name: Lint notebooks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install tooling
+        run: python -m pip install --upgrade pip nbformat
+
+      - name: Check every notebook is well-formed
+        run: |
+          python - <<'PY'
+          import pathlib, sys
+          import nbformat
+
+          skip = {".git", "cache", "IS-Bench", "__MACOSX", ".ipynb_checkpoints"}
+          bad = []
+          for path in sorted(pathlib.Path(".").rglob("*.ipynb")):
+              if any(part in skip for part in path.parts):
+                  continue
+              try:
+                  nbformat.validate(nbformat.read(path, as_version=4))
+              except Exception as exc:
+                  bad.append(f"{path}: {exc}")
+          for line in bad:
+              print(f"FAIL  {line}")
+          sys.exit(1 if bad else 0)
+          PY
+
+  hygiene:
+    name: Repository hygiene
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Reject macOS cruft and committed archives
+        run: |
+          status=0
+          if find . -path ./.git -prune -o \( -name ".DS_Store" -o -name "__MACOSX" \) -print | grep -q .; then
+            echo "FAIL  .DS_Store or __MACOSX entries are committed:"
+            find . -path ./.git -prune -o \( -name ".DS_Store" -o -name "__MACOSX" \) -print
+            status=1
+          fi
+          if find . -path ./.git -prune -o -name "*.zip" -print | grep -q .; then
+            echo "FAIL  archive files are committed; release them as GitHub release assets instead:"
+            find . -path ./.git -prune -o -name "*.zip" -print
+            status=1
+          fi
+          exit $status
+
+      - name: Require a license file
+        run: |
+          test -f LICENSE || { echo "FAIL  no LICENSE at repository root"; exit 1; }

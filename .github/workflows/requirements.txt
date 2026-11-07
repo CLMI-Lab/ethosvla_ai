@@ -1,0 +1,17 @@
+# Python 3.10+
+torch==2.2.0
+torchvision
+transformers>=4.40
+peft>=0.10
+accelerate
+bitsandbytes          # int8/NF4 inference on 16 GB GPUs
+torch-geometric       # GAT in the CAC encoder
+open3d                # point clouds / 3D-ESG
+numpy
+pandas
+scipy
+scikit-learn
+matplotlib
+seaborn
+tqdm
+nbformat
